@@ -1,0 +1,188 @@
+html,body{
+	width:100%;
+	height: 100%;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+}
+input{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+h3,p{
+	margin: 0;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.bg{
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	overflow: hidden;
+	/*position: relative;*/
+	background: -webkit-radial-gradient(top, red 0%, orange 30%, yellow 50%, #1d1c32 100%);
+}
+#kong{
+	position: absolute;
+	width: 400px;
+	height: 150px;
+	top:0 ;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	display: none;
+}
+.kHead{
+	background: linear-gradient(#dedee1,#cdcdcd);
+	height: 24px;
+	border-bottom:1px solid #b5b5b5 ;
+}
+.kContent{
+	padding: 16px 15px 16px 82px;
+	height: 93px;
+	background: #ebebeb;
+	position: relative;
+}
+.h3{
+	font: bold 16px/30px "宋体";
+	color: #000000;
+}
+.p{
+	font: bold 12px/20px "宋体";
+	color: #000000;
+}
+.sure{
+	width: 70px;
+	height: 20px;
+	background: linear-gradient(#1acfda,#237dd9) ;
+	color: #ffffff;
+	font: 14px/20px  "宋体";
+	position: absolute;
+	bottom: 16px;
+	right: 15px;
+}
+.box{
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 340px;
+	background: #e5e3ec;
+	border-radius:12px ;
+	box-shadow: 5px 5px 5px 0px #000;
+}
+.topHead{
+	width: 340px;	
+	height:44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.top{
+	width: 60px;
+	height: 4px;
+	display: block;
+	background: #979799;
+}
+.section{
+	width: 306px;
+	height: 535px;
+	background: #ffffff;
+	margin: 0 auto;
+}
+.chat{
+	height: 478px;
+	width: 286px;
+	padding-left: 20px;
+	overflow-y: auto;
+	background: url(../img/d3.gif) no-repeat;
+	background-size:100% 100%;
+}
+.chatcontent{
+	width: 266px;
+	padding-top: 20px;
+}
+
+
+.lico,.rico{
+	width: 273px;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.lico span{
+	float: left;
+	width: 35px;
+	height:40px;
+}
+.rico span{
+	float: right;
+	width: 35px;
+	height:40px;
+}
+.lico p{
+	float: left;
+	padding: 5px 10px 3px 10px;
+	font: 12px/30px  "宋体";
+	color: #000000;
+	max-width: 190px;
+	margin-left: 8px;
+	background: #e1e1e1;
+	word-break: break-all;
+}
+.rico p{
+	float: right;
+	padding: 5px 10px 3px 10px;
+	font: 12px/30px  "宋体";
+	color: #ffffff;
+	max-width: 190px;
+	margin-right: 8px;
+	background: #b2a9c8;
+	word-break: break-all;
+}
+
+.headTextButton{
+	width: 306px;
+	height: 40px;
+	padding: 10px 0px 7px 0px;
+	background: #e3e3e3;
+	display: flex;
+}
+.head{
+	width: 35px;
+	height: 40px;
+	padding: 0 15px;
+	display: block;
+}
+#pico{
+	width: 35px;
+	height: 40px;
+	display: block;
+}
+#content{
+	width: 163px;
+	height: 40px;
+	border-radius: 4px;
+	padding: 0 10px;
+	font: 14px/40px "微软雅黑";
+}
+
+#send{
+	width: 58px;
+	height: 40px;
+	text-align: center;
+	color: #d25a61;
+	background: #e3e3e3;
+	font: 16px/40px  "微软雅黑";
+}
