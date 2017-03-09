@@ -1,0 +1,212 @@
+body,h3,h4{
+	margin: 0;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+p{
+	margin: 0;
+	padding: 0;
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+#wrap{
+	width: 1300px;
+	height: 630px;
+	background: url(../img/wrap.png) no-repeat;
+	background-size:100% 100% ;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#ipad{
+	width: 900px;
+	height: 580px;
+	background: #fafafa;
+	border-radius:20px ;
+	display: flex;
+	border:5px solid #e1e1e1 ;
+	box-shadow: 3px 3px 10px 0 #000000;
+}
+.ipadHead{
+	width: 60px;
+	height: 580px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ipadHead span{
+	display: block;
+	width: 4px;
+	background: #1c3066;
+	border-radius:10px ;
+	height: 4px;
+	border: 6px solid #4c4d51;
+}
+.ipadBody{
+	width: 848px;
+	height: 528px;
+	margin: 25px 0;
+	border: 1px solid #d1d0d4;
+	background:#000;
+	position: relative;
+	overflow: hidden;
+}
+.bg{
+	width: 765px;
+	height: 530px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../img/bg.jpg);	
+	background-size:765px 530px; 
+}
+.camera{
+	width: 75px;
+	height: 60px;
+	position: absolute;
+	left: 65px;
+	top: 175px;
+}
+.bbox{
+	width:100%;
+	height: 100%;
+	transition:1s;
+	background: #000;
+	transform:scale(0) rotate(0deg);
+	overflow: hidden;
+}
+.conHead{
+	height: 60px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.conHead h3{
+	width: 183px;
+	height: 34px;
+	border: 1px solid #d1d0d4;
+	background: #000;
+	color: #fff;
+	display: flex;
+	justify-content: space-around;
+
+}
+#loop{
+	width: 90px;
+	text-align: center;
+	font: 16px/34px "微软雅黑";
+	display: block;
+}
+#order{
+	width: 90px;
+	text-align: center;
+	font: 16px/34px "微软雅黑";
+	display: block;
+}
+.active{
+	background: #fff;
+	color: #000;
+}
+#text1{
+	padding-bottom: 12px;
+	height: 18px;
+	font: 14px/18px  "微软雅黑";
+	color: #878886;
+	text-align: center;
+	position: relative;
+}
+.picBox{
+	height: 440px;
+	width: 765px;
+	overflow: hidden;
+	position: relative;
+	transition:2s;
+}
+.pictb{
+	position: absolute;
+	font: 16px/30px  "微软雅黑";
+	color: #FFFFFF;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.num{
+	top: 0;
+}
+.des{
+	bottom: 0;
+}
+.sj{
+	position: absolute;
+	width: 35px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 40px;
+	text-align: center;
+	color: #898478;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.prev{
+	left: 0;
+}
+.next{
+	right: 0;
+}
+.next:hover,.prev:hover{
+	background: rgba(0,0,0,0.4);
+	color: #FFFFFF;
+}
+#ale{
+	position: absolute;
+	display: none;
+	width: 298px;
+	height: 100px;
+	padding: 28px 0 20px;
+	border: 1px solid #797976;
+	background: rgba(0,0,0,0.4);
+	top: 80px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+.js{
+	font: 18px/30px  "微软雅黑";
+	color: #FFFFFF;
+	text-align: center;
+}
+.firstLast{
+	font: 12px/44px  "微软雅黑";
+	color: #919491;
+	text-align: center;
+}
+.sure{
+	display:inline-block;
+	text-align: center;
+	border: 1px solid #efedea;
+	border-radius:1px ;
+	height: 24px;
+	width: 80px;
+	font: 14px/24px  "微软雅黑";
+	color: #FFFFFF;
+}
+.ipadFoot{
+	width: 90px;
+	height: 580px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.home{
+	width: 65px;
+	height: 65px;
+	background: url(../img/home.png);
+	border-radius:65px ;
+	display: block;
+}
