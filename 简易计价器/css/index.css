@@ -1,0 +1,98 @@
+html{
+	width: 100%;
+	height: 100%;
+}
+ul,li{
+	margin:0;
+	padding:0;
+	list-style: none;  
+}
+a{
+	text-decoration: none;
+}
+body{
+	margin:0;
+	background: url(../img/bg.jpg) no-repeat center;
+	background-size: 100% 100%;
+}
+section{
+	margin: 15px;
+	width: 500px;
+	height: 600px;
+	background: rgba(0,0,0,0.6);
+	border-radius: 20px;
+}
+header{
+	overflow: hidden;
+}
+h2{
+	color:#fff;
+	text-align: center;
+}
+li{
+	display: flex;
+	justify-content:space-around;
+	align-items:center;
+	margin-bottom:20px;
+}
+.fun{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	/*width: 200px;*/
+}
+.fun1{
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+.add{
+	width: 52px;
+	height: 42px;
+	background:url(../img/add.png) no-repeat;
+}
+.num{
+	width: 52px;
+	height: 52px;
+	text-align: center;
+	font: 20px/52px "宋体";
+	color: #000;
+	background: #fff;
+	border-radius:5px;
+	margin: 0 10px;
+}
+.min{
+	width: 52px;
+	height: 42px;
+	background:url(../img/min.png) no-repeat;
+}
+.sub{
+	background: #000;
+	width: 220px;
+	height: 16px;
+	border-radius: 5px;
+	padding:13px;
+	display: flex;
+	justify-content:space-around;
+	color: #fff;
+}
+footer{
+	padding: 20px;
+	height: 130px;
+	color: #fff;
+	
+}
+.footer{
+	display: flex;margin-bottom: 20px;
+	justify-content:space-around;
+}
+.sumitem,.sumPrice,.summost{
+	width: 70px;
+	height: 52px;
+	text-align: center;
+	font: 20px/52px "宋体";
+	color: #000;
+	background: #fff;
+	border-radius:5px;
+	margin: 0 10px;
+}
