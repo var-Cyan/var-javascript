@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.clearfix{
+			content:'';
+			display: block;
+			clear: both;
+		}
+		body,html{
+			width: 100%;
+			height: 100%;
+			margin:0; 
+		}
+		body{
+			background: url(1485183613336.jpg) no-repeat 100%;
+			display: flex;
+			justify-content:center;
+			align-items:center;
+		}
+		ul{
+			margin:0;
+			padding:0;
+		}
+		li{
+			list-style: none;
+			padding: 0;
+		}
+		.box{
+			width: 760px;
+			height: 260px;
+		}
+		a{
+			color: #000;
+			text-decoration:none;
+		}
+		.head{
+			width: 100%;
+			height: 26px;
+			padding: 12px 0;
+			overflow: hidden;
+			display: flex;
+			justify-content:flex-start;
+			align-items:center;
+			background: rgba(255,255,255,0.3);
+		}
+		.head .your{
+			color: #000;
+			font:14px/26px "微软雅黑";
+			margin-left:20px; 
+		}
+		nav{
+			margin-left:5px;
+			display: flex;
+			justify-content:flex-start;
+			align-items:center;
+		}
+		nav a{
+			height: 22px;
+			border: 2px solid #1295b9;
+			font: 14px/23px "微软雅黑";
+			margin-right: 10px;
+			display: none;
+		}
+		.choose{
+			margin-left:6px;
+			margin-right:8px;
+			float: left;
+			color: #00bbff;
+		}
+		.close{
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			font: 14px/20px Arial;
+			background: #1295b9;
+			margin-right: 1px;
+			margin-top: 1px;
+			float: right;
+		}
+		.bigbox{
+			padding: 20px 30px;
+			width: 700px;
+			background: rgba(255,255,255,0.5);
+		}
+		.bigbox{
+			font: 14px/42px "微软雅黑";
+		}
+		.bigbox li{
+			display: flex;
+			justify-content:flex-start;
+			align-items:center;
+		}
+		.bigbox li a{
+			padding:0 6px; 
+			margin: 0 7px;
+		}
+		a.active{
+			color: #00bbff;
+		}
+	</style>
+</head>
+<body>
+	<section class="box"></section>
+	<script type="text/javascript">
+		var bigbox=[
+					{	
+						'title':'品牌：',
+						'content':['苹果','小米','锤子','魅族','华为','三星','OPPO','vivo','乐视','360','中兴','索尼']
+					},
+					{
+						'title':'尺寸：',
+						'content':['3.0英寸以下','3.0-3.9英寸','4.0-4.5英寸','5.0-5.5英寸','6.0英寸以上']
+					},
+					{
+						'title':'系统：',
+						'content':['安卓(Android)','苹果(IOS)','微软(WindowsPhone)','无','其他']
+					},
+					{
+						'title':'网络：',
+						'content':['联通3G','双卡单4G','双卡双4G','联通4G','电信4G','移动4G']
+					}
+				]
+			
+	//----------------------生成-----------------
+		var sec=document.querySelector('section');
+		var str='<div class="head"><span class="your">你的选择:</span><nav>' 
+		var ul = document.createElement('ul');
+		var lis = ul.children;
+		ul.className = 'bigbox';
+		//创建ul下的li  及li下的span 和 a  
+		for(var i=0;i<bigbox.length;i++){
+			str+='<a href="javascript:;"><span class="choose"></span><span class="close">x</span></a>';
+			var li=document.createElement('li');
+			ul.appendChild(li);
+			var tit=document.createElement('span');
+			li.appendChild(tit);
+			tit.innerHTML=bigbox[i].title;
+			li.style.borderBottom= (i==3?'none':'2px dotted #d0ecee');
+			for(var j=0;j<bigbox[i].content.length;j++){
+				var a=document.createElement('a');
+				li.appendChild(a);
+				a.href='javascript:;';
+				a.innerHTML=bigbox[i].content[j];
+			}
+		}
+		str+='</nav></div>'
+		sec.innerHTML+=str;
+		sec.appendChild(ul);
+	//-------------------------------
+
+	var choosed=document.querySelectorAll('nav a')
+	var chooses=document.querySelectorAll('.choose')
+	var closes=document.querySelectorAll('.close')
+		for(var i=0;i<lis.length;i++){
+		closes[i].index=i
+		aG(i);
+	}
+	function aG(num){
+		var as = lis[num].querySelectorAll('a');
+		for(var i=0;i<as.length;i++){
+			as[i].onclick = function(){
+				if(this.parentNode==lis[num]){
+					var sons=this.parentNode.querySelectorAll('a');
+					choosed[num].style.display='block';
+					for(var i=0;i<sons.length;i++){
+						if(sons[i]!=this){
+							sons[i].classList.remove('active')
+						}
+					}
+					this.classList.add('active')
+					chooses[num].innerHTML=this.innerHTML;
+				}	
+
+					closes[num].onclick=function(){
+					this.classList.remove('active');
+					var as = lis[this.index].querySelectorAll('a');
+					for(var i=0;i<as.length;i++){
+						as[i].classList.remove('active');
+					}
+					choosed[num].style.display='none';
+
+				}
+			}
+		}
+	}
+	</script>
+</body>
+</html>
