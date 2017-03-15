@@ -1,0 +1,47 @@
+header div{
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+	width: 40%;
+}
+header div a:nth-of-type(2){
+	background: #fe2c4e;
+	padding: 0 30px;
+	height:28px;
+	font:16px/28px "微软雅黑";
+	border-radius: 28px;
+	color:#000;
+}
+.box{
+	width: calc(100% - 60px);
+	margin: 0 30px;
+	height: calc(100% - 76px);
+	color:#b5bccd;
+}
+.zhaopin{
+	font: 20px/40px "微软雅黑";
+	
+}
+.head{
+	border-bottom:1px dotted #2d323d; 
+}
+.yaoqiu{
+	font: 14px/40px "微软雅黑";
+}
+.body{
+	height:calc(100% - 100px);
+	overflow: hidden;
+}
+.body span{
+	display: block;
+}
+.body .t{
+	margin-top: 15px;
+	margin-bottom: 5px;
+	color:#8c92a8;
+}
+.body .l{
+	color:#636f7f;
+	font-size:14px;
+	line-height: 26px;
+}

@@ -1,0 +1,142 @@
+.contant{
+	width: calc(100% - 26px);
+	margin-left: 26px;
+	height:calc(100% - 128px);
+	position: relative;
+		display: flex;
+	justify-content:space-between;
+	align-items:center;
+	margin-bottom:52px;
+}
+.border{
+	width: 2px;
+	height: 340px;
+	border:2px solid #1d1f27;
+	position: absolute;
+	background: #303642;
+	top:10px;
+	left:68px;
+	border-radius: 4px;
+
+}
+.contant nav{
+	position: relative;
+	z-index: 2;
+	width: 72px;
+	padding-top: 12px;
+	height: calc(100% - 12px);
+		display: flex;
+	justify-content:flex-start;
+	align-content:flex-start;
+	flex-wrap:wrap;
+}
+.contant nav a{
+	padding-top: 10px;
+margin-bottom:30px;
+height:44px;
+width: 70px;
+color:#ff2c4f;
+border-right: 2px solid transparent;
+text-align: center;
+}
+.contant nav a.active{
+border-right: 2px solid currentColor;
+}
+.contant nav a span:nth-of-type(2){
+	color:#6a7686;
+}
+.zhaopin{
+
+		width: 602px;
+	height: 332px;
+	position: relative;
+
+}
+.shbox{
+		width: 602px;
+	height: 332px;
+	position: absolute;
+}
+/*.shbox ul.active{
+	opacity: 1;
+}*/
+/*.ul{
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}*/
+.shbox li{
+	padding-left:20px;
+	padding-right:30px;
+
+	width:calc(100% - 50px);
+	height: 82px;
+	border-bottom:1px dotted #303642; 
+	display: flex;
+	justify-content:flex-start;
+	align-items:center;
+}
+.shbox li:hover{
+	background: #1e212a;
+}
+li .num{
+	width: 50px;
+	height:40px;
+	display: block;
+	color: #6a7686;
+	text-align: center;
+	font-size: 35px;
+	border-right:1px solid #303642;
+}
+.shbox li:hover .num{
+	border-right-color:#ff2c4f; 
+}
+.need{
+	margin-left:10px;
+	width: 420px;
+}
+.top{
+	height: 41px;
+	color:#b0b7c8;
+	font-size: 16px/41px "微软雅黑";
+}
+.zw{
+	margin-right:30px;
+}
+.bottom{
+	font-size:12px;
+	color:#636e7e;
+	display: flex;
+}
+.bottom div{
+		width: 350px;
+	  overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+}
+.last{
+	color:#606a7a;
+	font: 14px/40px Arial,"仿宋";
+}
+.more{
+	color:#b6bdcf;
+}
+.list{
+	position: absolute;
+	bottom:-30px;
+	color:#fff;
+	left:220px;
+	display: flex;
+	width: 100px;
+	justify-content:space-between;
+}
+.list a{
+	width: 50px;
+	height:30px;
+	text-align: center;
+	font: 14px/30px Arial;
+}
