@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html{
+		height: 100%;
+	}
+	body{
+		margin:0; 
+		background:radial-gradient(#eee 20%, black 80%); 
+	}
+	.box{
+		display: flex;
+		justify-content:space-between;
+		padding: 120px 100px 50px 100px;
+		overflow: hidden;
+	}
+	.small{
+		width: 200px;
+		height:200px;
+		position: relative;
+	}
+		.small img{
+			width: 200px;
+			height:200px;
+		}
+		.small .smallbox{
+			position: absolute;
+			width: 50px;
+			height:50px;
+			background: rgba(255,255,255,0.3);
+			display: none;
+		}
+	.big{
+		width: 200px;
+		height:200px;
+		background: #00bbff;
+		overflow: hidden;
+		position: relative;
+		display: none;
+	}
+	.big img{
+		position: absolute;
+		width: 800px;
+		height:800px;
+	}
+	ul,li{
+		padding: 0;
+		margin:0;
+		list-style: none;
+	}
+	ul{
+		display: flex;
+		justify-content:space-between;
+		align-items:flex-start;
+		flex-wrap:wrap;
+	}
+	li{
+		width: 100px;
+		height:100px;
+		margin: 10px;
+		border-radius: 50%;
+	}
+	li img{
+		width: 100px;
+		height:100px;
+		border-radius: 50%;
+	}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="small">
+			<img src="img/路飞.jpg" alt="">
+			<div class="smallbox"></div>
+		</div>
+		<div class="big">
+			<img src="img/路飞.jpg" alt="">
+		</div>
+	</div>
+	<ul>
+	</ul>
+	<script>
+		var small=document.querySelector('.small')
+		var smallbox=document.querySelector('.smallbox')
+		var smallimg=document.querySelector('.small img')
+
+		var big=document.querySelector('.big')
+		var bigImg=document.querySelector('.big img')
+		var pic=['img/路飞.jpg','img/索隆.jpg','img/娜美.jpg','img/乌索普.jpg','img/山治.jpg','img/乔巴.jpg','img/罗宾.jpg','img/弗兰奇.jpg','img/布鲁克.jpg']
+		small.onmouseover=function(){
+			smallbox.style.display='block';
+			big.style.display='block';
+		}
+		small.onmousemove=function(e){
+			//small
+			var sW=small.offsetWidth;
+			var sH=small.offsetHeight;
+			var sL=small.offsetLeft;
+			var sT=small.offsetTop;
+			//smallbox
+			var sbW=smallbox.offsetWidth
+			var sbH=smallbox.offsetHeight
+			var sbL=smallbox.offsetLeft;
+			var sbT=smallbox.offsetTop;
+			//
+			var L=e.pageX-sL-sbW/2
+			var T=e.pageY-sT-sbH/2
+			if(L<0){
+				L=0
+			}else if(L>sW-sbW){
+				L=sW-sbW
+			}
+			if(T<0){
+				T=0
+			}else if(T>sH-sbH){
+				T=sH-sbH
+			}
+			smallbox.style.left=L+'px';
+			smallbox.style.top=T+'px';
+			//得到比例
+			var scaleX=L/(sW-sbW);
+			var scaleY=T/(sH-sbH);
+
+			//获取大图片
+			var imgL=bigImg.offsetWidth-big.offsetWidth;
+			var imgH=bigImg.offsetHeight-big.offsetHeight;
+
+			bigImg.style.left=-scaleX*imgL+'px'
+			bigImg.style.top=-scaleY*imgH+'px'
+		}
+		small.onmouseout=function(){
+			smallbox.style.display='';
+			big.style.display='';
+		}
+		// 生成图片
+		change(pic)
+		function change(arr){
+			var ul=document.querySelector('ul')
+			var str=''
+			for(var i=0;i<arr.length;i++){
+				str+=`<li><img src="${arr[i]}" alt=""></li>`
+			}
+			ul.innerHTML=str;
+			ul.onclick=function(e){
+				console.log(e)
+				if(e.target.nodeName.toUpperCase()==='IMG'){
+					smallimg.src=bigImg.src=e.target.src;
+				}
+				
+			}
+		}
+	</script>
+</body>
+</html>
