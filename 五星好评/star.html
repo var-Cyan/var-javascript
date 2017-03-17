@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html{
+		height: 100%;
+		width: 100%;
+	}
+	body{
+		height: 100%;
+		width: 100%;
+		margin:0;
+		display: flex; 
+		background:radial-gradient(#000 10%, #00bbff 80%);
+	}
+	section{
+		width: 600px;
+		height: 300px;
+		margin: auto;
+		position: relative;
+	}
+	#box{
+		width: 300px;
+		height: 40px;
+		margin:auto; 
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		justify-content:space-around;
+		align-items:center;
+	}
+	#box div{
+		font-size: 0;
+		float: left;
+	}
+	span{
+		font-size: 30px;
+		color: #bebebe;
+	}
+	button{
+		float: right;
+		width: 80px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		display: none;
+	}
+	.pink{
+		color:pink;
+	}
+	.pinkRed{
+		color:deeppink;
+	}
+	.red{
+		color:#de4a62;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var span=document.querySelectorAll('span');
+			var button=document.querySelector('button')
+			var text=['极差','一般','不错','推荐','力推']
+			var onOff=true;
+			var prev='';
+			// 随着鼠标的移动而给span类数组的元素增加class
+			for(var i=0,len=span.length;i<len;i++){
+					//鼠标点击 1.移出事件不能清空已经点击确定产生的class
+					//		   2.移入事件不变，一切正常
+					//		   3.在点击能改变评价
+						//自定义索引值
+						span[i].index=i;
+					span[i].onclick=function(){
+						// 清空所有classname
+							kong(len);
+						show(this.index);
+						// 把这次的变成上次的，用于鼠标点击事件后，在鼠标移入时正常添加class  当鼠标移出时 恢复上一次所添加的class样子
+						prev=this.index;
+						// 用于判断鼠标移出时 是否清空上一次的class
+						onOff=false;
+					}
+						//鼠标移入发生的事件
+						span[i].onmouseover=function(){
+							// 清空所有classname
+							kong(len);
+							show(this.index);
+						}	
+						//鼠标移出事件 取消鼠标移入添加的classname
+						span[i].onmouseout=function(){
+							button.style.display='';
+							// 清空所有classname
+							kong(len);
+							//鼠标移出后 恢复点击时的状态
+							if(onOff==false){
+								show(prev);	
+							}
+						}
+					function kong(x){
+						for(var i=0;i<x;i++){
+							span[i].className='';
+						}
+					}
+					function show(x){
+						//	给鼠标移入的span[i]和对应的评价添加class
+							for(var i=0;i<=x;i++){
+							//给span[i]对应的评价添加class
+							button.style.display='block';
+							button.innerHTML=text[x];
+								//如果小于两个 颜色为pink
+								if(x<=1){
+									span[i].className='pink';
+								//如果2<i<len-2 颜色为pinkRed	
+								}else if(x>1 && x<=len-2){
+									span[i].className='pinkRed';
+									//最后一个为红色
+								}else{
+								span[i].className='red';
+							}
+						}
+					}
+				}//大循环括号
+			}//window.onload括号
+
+	</script>
+</head>
+<body>
+	<section>
+		<div id="box">
+			<div>
+				<span>★</span>
+				<span>★</span>
+				<span>★</span>
+				<span>★</span>
+				<span>★</span>
+			</div>
+			<button></button>
+		</div>
+		
+	</section>
+</body>
+</html>
