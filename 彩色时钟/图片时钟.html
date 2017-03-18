@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		section{
+			width: 1024px;
+			height: 600px;
+			background: url(2.jpg) center no-repeat;
+			background-size:100%;
+			position: absolute;
+			left: calc(50% - 512px);
+			top: calc(50% - 300px);
+		}
+			.clockbg{
+				position: absolute;
+				width: 624px;
+				height: 116px;
+				left: calc(50% - 312px);
+				top: calc(50% - 58px);
+				background: url(clockBg.png) center;
+			}
+				.clockbg:after{	
+					content: "";
+					position: absolute;
+					top: 24px;
+					left: 27px;
+					width: 59px;
+					height: 61px;
+					background: url(sec1.png) center;
+				}
+				.timer{
+					width: 486px;
+					height: 90px;
+					margin-top: 13px;
+					margin-left: 100px; 
+					display: flex;
+					justify-content:space-between;
+				}	
+					.dian{
+						width: 25px;
+						height: 90px;
+						display: flex;
+						justify-content:space-around;
+						align-items:center;
+						flex-wrap: wrap;
+					}
+						.dians{
+							height:14px;
+							width:14px;
+							border:2px solid #000;
+							border-radius: 50%;
+							background: #b3b3b4;
+						}
+					.timebox{
+						position: relative;
+					}
+						.time{
+							width: 130px;
+							height: 86px;
+							border: 2px solid #bcbcbd;
+							position: relative;
+							border-radius: 6px;
+							background: #000;
+							display: flex;
+							justify-content:space-around;
+							align-items:center;
+							
+						}
+						.timebg{
+							width: 140px;
+							height: 16px;
+							background: url(round.png) no-repeat;
+							background-size: 140px 16px;
+							position: absolute;
+							left: -3px;
+							top:calc(50% - 8px);
+
+						}
+							.time .wrap{
+								overflow: hidden;
+							}
+							.timer .num{
+								width: 60px;
+								height: 80px;
+								border-radius: 5px;
+								position: relative;
+								top: 0;
+								
+							}
+								.num span{
+									display: block;
+									width: 60px;
+									height: 80px;
+									background: radial-gradient(red,orange,yellow,indigo);
+									color: #000;
+									border-radius: 5px;
+									text-align: center;
+									font: 40px/80px Arial;
+								}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="clockbg">
+			<div class="timer">
+				<div class="timebox">
+					<div class="timebg">
+					</div>
+					<div class="time hour">
+						<div class="wrap">
+							<div class="num hour10">
+								<span>0</span>
+								<span>1</span>
+							</div>
+						</div>
+						<div class="wrap">
+							<div class="num hour1">
+								<span>0</span>
+								<span>1</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dian">
+					<i class="dians"></i>
+					<i class="dians"></i>
+				</div>
+				<div class="timebox">
+					<div class="timebg">
+					</div>
+					<div class="time hour">
+						<div class="wrap">
+							<div class="num minute10">
+								<span>0</span>
+								<span>1</span>
+							</div>
+						</div>
+						<div class="wrap">
+							<div class="num minute1">
+								<span>0</span>
+								<span>1</span>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="dian">
+					<i class="dians"></i>
+					<i class="dians"></i>
+				</div>
+				<div class="timebox">
+					<div class="timebg">
+					</div>
+					<div class="time hour">
+						<div class="wrap">
+							<div class="num second10">
+								<span>0</span>
+								<span>1</span>
+							</div>
+						</div>
+						<div class="wrap">
+							<div class="num second1">
+								<div>
+									<span>0</span>
+									<span>1</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="fq_tools.js"></script>
+	<script type="text/javascript">
+		//获取时分秒对应的div
+		var nums=document.querySelectorAll('.num');
+		// 获取的是：：的div  其length为2;
+		var dian=document.querySelectorAll('.dian');
+		//用来获取这句代码声明时候的时间
+		var nowDate=new Date();
+		//获取声明当前对象时的时/分/秒
+		var hours=nowDate.getHours();
+		var minutes=nowDate.getMinutes();
+		var seconds=nowDate.getSeconds();
+		//将其拼接显示对应的时分秒;
+		var nowTime=add0(hours)+add0(minutes)+add0(seconds);
+		fn()
+		//补0函数  注意：当i<10为假时即i>=10时 要写成i+''; 如果不加'' 则其类型为Number 则会变为数字加和而不是字符串拼接
+		function add0(i){
+			return i<10?'0'+i:i+'';
+		}
+		//每一秒执行一次下列函数及循环
+		setInterval(function(){
+			fn();
+			//操作一组元素用for循环
+			//dian.length为2
+			for(var i=0;i<dian.length;i++){
+				//匿名函数自执行
+				(function(i){
+					//利用动画函数将所有的：的盒子的透明度变为0，时间为半秒;
+					//执行完后将盒子的透明度变为1，时间为半秒.
+					//整个过程恰与定时器间隔执行时间相同。
+					fq.animate(dian[i],{'opacity':0},500,'linear',function(){
+						fq.animate(dian[i],{'opacity':1},500,'linear');
+					})
+				})(i)//传入的i为循环中的i
+			}
+		},1000)
+		function fn(){
+			//获取每秒所对应的时间对象
+			var newDate=new Date();
+			//获取每秒所对应的时间的时分秒
+			var hour=newDate.getHours();
+			var minute=newDate.getMinutes();
+			var second=newDate.getSeconds();
+			//将其拼接显示每秒对应的时分秒;
+			var newTime=add0(hour)+add0(minute)+add0(second);
+
+			for(var i=0;i<newTime.length;i++){
+				//获取nums下的span 六组 12个
+				//给nums添加自定义属性spans 内容为每个nums下的span
+				nums[i].spans=nums[i].querySelectorAll('span');
+				//每组的第一个的内容为nowTime字符串对应的第i个
+				nums[i].spans[0].innerHTML=nowTime[i];
+				//每组的第二个的内容为每秒获取newTime字符串对应的第i个
+				nums[i].spans[1].innerHTML=newTime[i];
+				//将所有的nums的top变为0即让其回复原来的位置;
+				fq.css(nums[i],'top',0);
+				//比较每组的内容哪个不相同，不相同发生以下效果
+				if(nowTime[i]!=newTime[i]){
+					// 
+					fq.animate(nums[i], {'top':-80}, 500, 'linear')
+				}
+			}
+			//把当前时间更新为上一个/更新时间 再进行比较
+			nowTime=newTime;
+		}
+	</script>
+</body>
+</html>
