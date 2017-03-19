@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div1{
+			width: 300px;
+			height: 300px;
+			background: red;
+			position: relative;
+		}
+		.div2{
+			width: 100px;
+			height: 100px;
+			background: #00bbff;
+			position: absolute;
+			top: calc(50% - 50px);
+			left: calc(50% - 50px);
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">
+		<div class="div2"></div>
+	</div>
+</body>
+<script>
+	function shake(obj, attr, nums, fn){
+	  if(obj.shake) return;
+	  var arr = [], _this = this;
+	  for(var i=nums; i>=0; i--){
+	    arr.push(i, -i);
+	  }
+	  var index = 0;
+	  var iniAttrVal = this.css(obj, attr);
+	  if(iniAttrVal === undefined){
+	    iniAttrVal = 0;
+	  }
+	  clearInterval(obj.shake);
+	  obj.shake = setInterval(function() {
+	    _this.css(obj, attr, iniAttrVal + arr[index++]);
+	    if(index == arr.length){
+	      clearInterval(obj.shake);
+	      obj.timer = null;
+	      if(typeof fn == 'function'){
+	        fn.call(obj);
+	      }
+	    }
+	  }, 1000/60);
+	};
+	var div1=document.querySelectorAll('.div1')
+	// var div2=document.querySelectorAll('.div2')
+	shake(div1, 'left', 20);
+
+</script>
+</html>
