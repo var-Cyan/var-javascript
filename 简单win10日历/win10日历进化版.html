@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		section{
+			position: absolute;
+			width: 350px;
+			left: calc(50% - 180px);
+			top: calc(50% - 277px);
+			background: rgba(0,0,0,.8);
+			border-left:1px solid #3e3f3c; 
+			border-right:1px solid #3e3f3c; 
+			border-bottom:1px solid #555554; 
+			color: #fff;
+		}
+			.timer{
+				padding: 20px 25px; 
+				border-bottom:1px solid #555554;
+			}
+				.timer .hms{
+					font: 50px/50px Arial;
+				}
+				.timer .ymd{
+					font: 20px/22px Arial;
+					color: #00b7c3;
+				}
+			.calendar{
+				padding:10px; 
+			}
+				.calendar .ymPN{
+					display: flex;
+					padding-left:15px; 
+					justify-content: space-between;
+					height: 40px;
+					font: 20px/40px Arial,'微软雅黑';
+				}
+					.ymPN .ym{
+						color:#ccc;
+					}
+					.ymPN .ym:hover{
+						color:#fff;
+					}
+						.pn .prev,.pn .next{
+							width: 46px;
+							height: 40px;
+							text-align: center;
+							transform:rotate(90deg);
+							display: inline-block;
+							font: 30px/40px Arial;
+							color: #ccc;
+						}
+						.pn .prev:hover,.pn .next:hover{
+							color:#fff;
+						}
+						.pn .next{
+							transform:rotate(-90deg);
+						}
+
+				.calendar .week,.calendar .date-nums{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+				}
+				.calendar .date-nums{
+					flex-wrap: wrap;
+				}	
+					.week span,.date-nums span{
+						width: 44px;
+						height: 40px;
+						text-align: center;
+						font: 20px/40px Arial;
+						border: 1px solid rgba(0,0,0,0);
+					}
+					.week span:hover,.date-nums span:hover{
+						border: 1px solid #eee;
+					}
+					   .date-nums .current-day {
+					   	position: relative;
+					      background: #00b7c3;
+					    }
+					    .date-nums .current-day:after{
+					    content: "";
+					   	position: absolute;
+					   	top: 1px;
+					   	left: 1px;
+					   	width: 40px;
+					   	height: 36px;
+					   	border: 1px solid black;
+					    }
+	</style>
+</head>
+<body>
+	<section>
+		<div class="timer">
+			<div class="hms">22:00:00</div>
+			<div class="ymd">2000年01月01日</div>
+		</div>
+		<div class="calendar">
+			<div class="ymPN">
+				<div class="ym">2000年2月</div>
+				<div class="pn">
+					<span class="prev"><</span>
+					<span class="next"><</span>
+				</div>
+			</div>
+			<div class="week">
+		        <span>一</span>
+		        <span>二</span>
+		        <span>三</span>
+		        <span>四</span>
+		        <span>五</span>
+		        <span>六</span>
+		        <span>日</span>
+			</div>
+			<div class="date-nums">
+				
+			</div>
+		</div>
+	</section>
+	<script>
+		(function(d){
+			var hms=d.querySelector('.hms');
+			var ymd=d.querySelector('.ymd');
+			var ym=d.querySelector('.ym');
+			var prev=d.querySelector('.prev');
+			var next=d.querySelector('.next');
+			var dateNums=d.querySelector('.date-nums');
+			var now=0;
+			setInterval(timer,1000);
+			calendar(now);
+			// console.dir(prev)
+			prev.onclick=function(){
+				now--;
+				calendar(now);
+			}
+			next.onclick=function(){
+				now++;
+				calendar(now);
+			}
+			function timer(){
+				var currentTime=new Date();
+				var years=currentTime.getFullYear();
+				var months=currentTime.getMonth();
+				var date=currentTime.getDate();
+				var hours=currentTime.getHours();
+				var minutes=currentTime.getMinutes();
+				var seconds=currentTime.getSeconds();
+				hms.innerHTML=add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+				ymd.innerHTML=years+'年'+add0(months+1)+'月'+date+'日';
+		
+			}
+			function calendar(){
+				var currentTime=new Date();
+				currentTime.setMonth(currentTime.getMonth()+now);
+				var years=currentTime.getFullYear();
+				var months=currentTime.getMonth();
+				var date=currentTime.getDate();
+				ym.innerHTML=years+'年'+add0(months+1)+'月';
+				//将当前的这个日期设置为本月的一号
+				currentTime.setDate(1);
+				//获取当月一号对应的是星期几
+				var startDay=currentTime.getDay();
+				//由于是星期几，当前就从星期几-1开始 用于创建当月之前 上个月末尾的几天;
+				 if(startDay==0){
+			        startDay=7;
+			      }
+//前后的顺序的问题 不是很理解；if(startDay==0){ startDay=7; }      startDay=startDay-1
+				startDay=startDay-1;//startDay--;
+			    
+				//获取下个月(获取当前这个月+1)
+				currentTime.setMonth(currentTime.getMonth()+1)
+				//获取下个月的第0天也就是这个月的最后一天;
+				currentTime.setDate(0);
+				//获取当月的总天数
+				var allDays=currentTime.getDate(0);
+				//将当前的日期对象设置为当前月份的第0天，也就是上个月的最后一天;
+				currentTime.setDate(0);
+				//获取上个月的总天数
+				var prevDays=currentTime.getDate(0);
+			      console.log(startDay);
+			      console.log(allDays);
+			      console.log(42-allDays-startDay);
+				var str='';
+				for(var i=startDay;i>0;i--){
+					str+='<span style="color:#999;">'+(prevDays-(i-1))+'</span>'
+				}
+				for(var i=0;i<allDays;i++){
+					str+='<span class="'+(i+1==date && now==0?'current-day':'')+'">'+(i + 1)+'</span>';
+				}
+				for(var i=0;i<42-allDays-startDay;i++){
+					str+='<span style="color:#999;">'+(i+1)+'</span>'
+				}
+				dateNums.innerHTML=str;	
+			}
+			function add0(i){
+				return i<10?'0'+i:i;
+			}
+
+		})(document)
+		
+
+
+
+
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>win10日历</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .calendar {
+      width: 460px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding-bottom: 20px;
+    }
+    .date-month {
+      width: 100%;
+      height: 66px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 32px;
+    }
+    .cur-month {
+      height: 100%;
+      color: #ccc;
+      font: 16px/66px Arial;
+    }
+    .set-month a, .cur-month {
+      cursor: default;
+      -webkit-user-select: none;
+    }
+    .set-month a:hover, .cur-month:hover {
+      color: #fff;
+    }
+    .set-month {
+      width: 88px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .set-month a {
+      color: #ccc;
+      font-size: 24px;
+    }
+    .prev {
+      transform: rotate(90deg);
+    }
+    .next {
+      transform: rotate(-90deg);
+    }
+    .date-days, .date-nums{
+      width: 100%;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .date-nums {
+      height: auto;
+      flex-wrap: wrap;
+    }
+    .date-days span, .date-nums span{
+      width: 60px;
+      height: 55px;
+      border: 2px solid rgba(0,0,0,0);
+      text-align: center;
+      color: #fff;
+      line-height: 55px;
+      cursor: default;
+    }
+    .date-days span:hover, .date-nums span:hover {
+      border-color: #ccc;
+    }
+    .current-day {
+      background: rgb(141, 214, 237);
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="date-month">
+      <div class="cur-month">xxxx年x月</div>
+      <div class="set-month">
+        <a href="javascript:;" class="prev"><</a>
+        <a href="javascript:;" class="next"><</a>
+      </div>
+    </div>
+    <div class="date-dates">
+      <div class="date-days">
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+        <span>日</span>
+      </div>
+      <div class="date-nums">
+        
+      </div>
+    </div>
+  </div>
+  <script>
+    // 用来显示当前年月的
+    var currentMonth = document.querySelector('.cur-month');
+    // 用来切换上一个月份的
+    var prevMonth = document.querySelector('.prev');
+    // 用来切换下一个月份的
+    var nextMonth = document.querySelector('.next');
+    // 用来生成所有日期的
+    var dateNums = document.querySelector('.date-nums');
+    var now=0;
+    //默认显示当前年月的日历
+    calendar(now);
+    prevMonth.onclick=function(){
+      now--;
+      calendar(now);
+    }
+    nextMonth.onclick=function(){
+      now++;
+      calendar(now);
+    }
+
+    function calendar(){
+        //获取当前的年月日时分秒
+      var currentTime=new Date();
+        //当点击上一个或者下一个的时候now随之变化  月份随之变化 超出0或者12会自动跳转到对应的年
+      currentTime.setMonth(currentTime.getMonth()+now)
+      //获取当前的年
+      var year=currentTime.getFullYear();
+      //获取当前的月
+      var month=currentTime.getMonth();
+      //获取当前的日
+      var date=currentTime.getDate();
+      //显示当前的年月
+      currentMonth.innerHTML=year+'年'+(month+1)+'月';
+      //将当前的这个日期对象设置为当月的1号
+      currentTime.setDate(1);
+      //获取当月一号对应的是星期几
+      var startDay=currentTime.getDay();
+      if(startDay==0){
+        startDay=7
+      }
+      //由于是星期几，当前就从星期几-1开始 用于创建当月之前 上个月末尾的几天;
+      startDay=startDay-1;//startDay--;
+      //获取下个月;
+      currentTime.setMonth(currentTime.getMonth()+1);
+      //将当前的日期对象设置为个月的第0天(也就是当月的最后一天)
+      currentTime.setDate(0);
+      //获取当月的总天数
+      var allDays=currentTime.getDate();
+      //将当前的日期对象设置为当月的第0天(也就是上月的最后一天)
+      currentTime.setDate(0);
+      //获取上月的总天数
+      var prevDays=currentTime.getDate();
+      console.log(startDay);
+      console.log(allDays);
+      console.log(42-allDays-startDay);
+      var str='';
+      
+      for(var i=startDay;i>0;i--){
+        str+='<span style="color:#ccc">'+(prevDays-(i-1))+'</span>';
+      }
+      for(var i=0;i<allDays;i++){
+                            //i从0开始 所以判断i+1==date(14)？
+        str+='<span class="'+(i+1==date && now==0?'current-day':'')+'">'+(i + 1)+'</span>';
+      }
+      for(var i=0;i<42-allDays-startDay;i++){
+                            //i从0开始 日期没有0号所以i+1;
+        str+='<span style="color:#ccc">'+(i + 1)+'</span>';
+      }
+      dateNums.innerHTML=str;
+    }
+    
+  </script>
+</body>
+</html>
