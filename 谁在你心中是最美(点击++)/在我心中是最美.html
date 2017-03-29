@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	h1，body,ul,li{
+		margin:0;
+		padding:0;
+		list-style: none;
+	}
+		section{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+			width: 1000px;
+			height: 500px;
+			background: url(bg.jpg) no-repeat;
+			background-size:100% 100%;
+		}
+			h1{
+				color: #fff;
+				text-align: center;
+			}
+			ul{
+				margin-top: 100px;
+				display: flex;
+				justify-content:space-around;
+				align-items:center;
+			}
+				li{
+					position: relative;
+					padding-top: 50px;
+					width: 200px;
+					height: 259px;
+					
+				}
+					.shadow{
+						position: absolute;
+						top: 0;
+						left: 0;
+						z-index: 2;
+						overflow: hidden;
+						width: 200px;
+						height: 259px;
+						border-radius: 50%;
+						box-shadow:inset -15px -15px 10px #fff,inset 10px 10px 10px #eee;
+					}
+					img{
+						position: absolute;
+						top: 0;
+						left: 0;
+						overflow: hidden;
+						width: 200px;
+						height: 259px;
+						border-radius: 50%;
+					}
+					.love{
+						position: absolute;
+						top: -50px;
+						left: 50%;
+						transform:translateX(-50%); 
+						width: 100px;
+						height: 105px;
+						background: url(love.png) no-repeat;
+						color: #fff;
+						text-align: center;
+						font: 25px/105px arial;
+						z-index: 2;
+					}
+					.love:hover{
+						background: url(love.png) no-repeat right
+					}
+					.heart{
+						position: absolute;
+						top: -10px;
+						left: 50%;
+						width: 32px;
+						height: 27px;
+						transform:translateX(-50%); 
+						background: url(heart.png) no-repeat;
+						opacity: 1;
+					}
+	</style>
+</head>
+<body>
+	<section>
+		<h1>
+			谁在你心中是最美
+		</h1>
+		<ul>
+			<li>
+				<div class="shadow"></div>
+				<img src="1.png" alt="">
+				<div class="love">+<span>1</span></div>
+				<div class="heart"></div>
+			</li>
+			<li>
+				<div class="shadow"></div>
+				<img src="2.png" alt="">
+				<div class="love">+<span>1</span></div>
+				<div class="heart"></div>
+			</li>
+			<li>
+				<div class="shadow"></div>
+				<img src="3.png" alt="">
+				<div class="love">+<span>1</span></div>
+				<div class="heart"></div>
+			</li>
+			<li>
+				<div class="shadow"></div>
+				<img src="4.png" alt="">
+				<div class="love">+<span>1</span></div>
+				<div class="heart"></div>
+			</li>
+		</ul>
+	</section>
+	<script type="text/javascript" src="tools_3.0.js"></script>
+	<script type="text/javascript">
+		(function(d){
+			var loves=d.querySelectorAll('.love');
+			var hearts=d.querySelectorAll('.heart');
+			var span=d.querySelectorAll('span');
+			var len=loves.length;
+			for(var i=0;i<len;i++){
+				loves[i].index=i;
+				loves[i].onOff=true;
+					loves[i].onclick=function(){
+					if(this.onOff){
+					var _this=this.index;
+					this.onOff=false;
+					span[this.index].innerHTML=++span[this.index].innerHTML;
+
+					mTween(hearts[this.index], {
+						'opacity':0,
+						'top':-120
+					}, 300, 'linear', function(){
+						css(hearts[_this],{'opacity':1,
+											'top':-10})
+						loves[_this].onOff=true
+					})
+				}
+				}
+			}
+
+
+		})(document)
+	</script>
+</body>
+</html>
