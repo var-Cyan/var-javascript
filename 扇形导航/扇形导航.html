@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+			/*background: #00bbff;*/
+		}
+		ul,li{
+			padding:0;
+			margin: 0;
+			list-style: none;
+		}
+		#menu{
+			width: 50px;
+			height:50px;
+			position: fixed;
+			right:20px;
+			bottom:20px;
+			
+		}
+		#menu:after{
+			content:"";
+			position: absolute;
+			width: 40px;
+			height:5px;
+			top:60px;
+			left:5px;
+			border-radius: 50%;
+			background:radial-gradient(rgba(0,0,0,1) 20%,rgba(0,0,0,0) 100%); 
+			/*background: #000;*/
+		}
+		#menu_list{
+			height:42px;
+			width: 42px;
+			position: relative;
+			margin: 4px;
+		}
+		#menu_list li{
+			height:42px;
+			width: 42px;
+			border-radius: 50%;
+			position: absolute;
+			background:radial-gradient(red 12%, orange 24%, yellow 36%, green 48%, #00bbff 60%, blue 72%, purple 84%, #eee 96%); 
+			left: 0;
+			top:0;
+			font:16px/42px "微软雅黑";
+			text-align: center;
+			transition:0.5s all ease;
+		}
+		#home{
+			width: 50px;
+			height:50px;
+			border-radius: 50%;
+			position: absolute;
+			top:0;
+			left:0;
+			background:radial-gradient(#eee 20%, black 80%);
+			font:20px/50px "微软雅黑";
+			text-align: center;
+			transition:1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<ul id="menu_list">
+			<li>新建</li>
+			<li>命名</li>
+			<li>移动</li>
+			<li>删除</li>
+			<li>全选</li>
+		</ul>
+		<div id="home">
+			功能
+		</div>
+	</div>
+	<script>
+		var oHome=document.querySelector('#home')
+		var ul=document.querySelector('#menu_list')
+		var lis=ul.querySelectorAll('li')
+		// console.log(oHome,lis)
+		var oHomeOnOff=true;
+		// 半径150 左 上 为负;
+		var iR=-150;
+
+		oHome.onclick=function(){
+			this.style.transform=`rotate(${oHomeOnOff?-360:0}deg)`;
+			for(var i=0;i<lis.length;i++){
+
+				var getData=getLT(iR,90/(lis.length-1)*i);
+				lis[i].style.transition=`0.5s+${oHomeOnOff?i*80:(lis.length-1-i)*80}ms`;
+				lis[i].style.left=`${oHomeOnOff?getData.l:0}px`;
+				lis[i].style.top=`${oHomeOnOff?getData.t:0}px`;
+				lis[i].style.transform=`scale(1) rotate(${oHomeOnOff? -720:0}deg)`;
+				lis[i].onclick=function(){
+					this.style.transition='0.3s';
+					this.style.transform="scale(2) rotate(-720deg)"
+					this.style.opacity=0.1;
+					addEnd(this,end)
+				}
+			}
+			oHomeOnOff=!oHomeOnOff		
+		}
+		
+		function getLT(iR,iDeg){
+			var iLeft=Math.round(Math.sin(iDeg/180*Math.PI)*iR);	
+			var iTop=Math.round(Math.cos(iDeg/180*Math.PI)*iR);
+			return {l:iLeft,t:iTop}
+		}	
+		function addEnd(obj,fn){
+			obj.addEventListener('transitionend',fn)
+		}
+		function removeEnd(obj,fn){
+			obj.removeEventListener('transitionend',fn)
+		}
+		function end(){
+			this.style.transition='0.1s';
+			this.style.transform="scale(1) rotate(-720deg)";
+			this.style.opacity=1;
+			removeEnd(this,end)
+		}
+	</script>
+</body>
+</html>
