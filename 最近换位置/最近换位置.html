@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		margin: 0;
+		position: relative;
+	}
+		ul,li{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			width: 480px;
+			height: 240px;
+			position: relative;border:1px solid #000;
+		}
+		li{
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			font: 40px/100px Arial;
+			top:0;
+			margin: 10px;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<button>从大到小</button>
+	<button>随机打乱</button>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<script src="fq_tools.js"></script>
+	<script>
+		var ul=document.querySelectorAll('ul');
+		var lis=document.querySelectorAll('ul li');
+		var btn=document.querySelectorAll('button');
+		var n=0;
+		var offsetArr=[];
+		
+		var arr
+		for(var i=0;i<lis.length;i++){
+
+			offsetArr.push([lis[i].offsetLeft,lis[i].offsetTop])
+			lis[i].style.background=`rgba(${20+~~(Math.random()*235)},${20+~~(Math.random()*235)},${20+~~(Math.random()*235)},${Math.random()})`
+		}
+		for(var i=0;i<lis.length;i++){
+			lis[i].style.margin=0;
+			lis[i].style.position='absolute';
+			fq.css(lis[i],{left:offsetArr[i][0],top:offsetArr[i][1]})
+			lis[i].style.left=offsetArr[i][0]+'px';
+			lis[i].style.top=offsetArr[i][1]+'px';
+		}
+		// 从大到小  从小到大
+		btn[0].onclick=function(){
+			offsetArr.reverse();
+			btn[0].innerHTML=n++%2? '从大到小':'从小到大';
+			for(var i=0;i<lis.length;i++){
+				fq.animate(lis[i],{left:offsetArr[i][0],top:offsetArr[i][1]})
+			}
+		}
+		//随机打乱
+		var offsetArr1=offsetArr.slice();
+		btn[1].onclick=function(){
+			offsetArr1.sort(function(){
+				return 0.5-Math.random();
+			})
+			for(var i=0;i<lis.length;i++){
+				fq.animate(lis[i],{left:offsetArr1[i][0],top:offsetArr1[i][1]})
+			}
+		}
+		for(var i=0;i<lis.length;i++){
+			lis[i].onmousedown=function(e){
+				// e.preventDefault();
+				var _this=this;
+				var self=[];
+				self[0]=_this.offsetLeft;
+				self[1]=_this.offsetTop;
+				_this.style.zIndex=999;
+				var downX=e.pageX-_this.offsetLeft,downY=e.pageY-_this.offsetTop;
+				var arr=[];
+				document.onmousemove=function(e){
+					var l=e.pageX-downX;
+					var t=e.pageY-downY;
+					if(l<0)l=0;
+					if(l>_this.parentNode.clientWidth-_this.clientWidth)l=_this.parentNode.clientWidth-_this.clientWidth;
+					if(t<0)t=0;
+					if(t>_this.parentNode.clientHeight-_this.clientHeight)t=_this.parentNode.clientHeight-_this.clientHeight;
+					_this.style.left=l+'px';
+					_this.style.top=t+'px';
+					for(var i=0;i<lis.length;i++){
+						if(_this!=lis[i]){
+							if(duang(_this,lis[i])){
+								if(arr.indexOf(i)==-1){
+									arr.push(i)
+								}
+							}
+						}
+					}
+					if(compare(arr,_this)){
+						compare(arr,_this)[2].style.border = '5px solid #000'
+					}
+				}
+				document.onmouseup=function(e){
+					document.onmousemove=document.onmouseup=null;
+					_this.style.zIndex='';
+					if(!compare(arr,_this)){
+							
+							_this.style.left = self[0]+'px';
+						_this.style.top = self[1]+'px';	
+					}else{
+						var data = compare(arr,_this)
+						console.log(data)
+						data[2].style.border = ''
+						_this.style.left = data[0]+'px';
+						_this.style.top = data[1]+'px';
+						data[2].style.left = self[0]+'px';
+						data[2].style.top = self[1]+'px';					
+					}
+				}
+				return false
+			}
+		}
+		function compare(arr,_this){
+			if(!arr.length)return;
+			var minN=Infinity,minpos,minnum;
+			for(var i=0;i<arr.length;i++){
+				lis[arr[i]].style.border=''
+				var a=lis[arr[i]].getBoundingClientRect();
+				var b=_this.getBoundingClientRect();
+				var result=Math.pow(Math.abs(a.left-b.left),2)+Math.pow(Math.abs(a.top-b.top),2)
+				if(minN>result){
+					minN=result
+					minnum=arr[i]
+					minpos=lis[arr[i]];
+				}
+			}
+			return [minpos.offsetLeft,minpos.offsetTop,minpos]
+		}
+		function duang(current,target){
+			var currentdata=current.getBoundingClientRect();
+			var targetdata=target.getBoundingClientRect();
+			if(currentdata.right>targetdata.left && currentdata.left<targetdata.right && currentdata.top<targetdata.bottom && currentdata.bottom>targetdata.top){
+				return true
+			}else{
+				return false
+			}
+		}
+
+	</script>
+</body>
+</html>
