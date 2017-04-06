@@ -1,0 +1,695 @@
+html{
+	height:100%;
+}
+body{
+	margin: 0;
+	/*background: #eff4f8;*/
+	background: url(../img/p.jpg) no-repeat;
+	background-size:cover; 
+	color:#fff;
+	height:100%;
+}
+.fl{
+	float:left; 
+}
+.fr{
+	float:right; 
+}
+a{
+	text-decoration: none;
+	color:#fff;
+}
+i {
+    font-style: normal;
+}
+ul,li{
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+input{
+	list-style: none;
+	border: none;
+	outline: none;
+	padding:0;
+}
+input{
+	list-style: none;
+	border: none;
+	outline: none;
+    font: 14px 'Microsoft Yahei';
+    border-radius: 16px;
+}
+strong{
+	font-weight: normal;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+/*-------------头部---------------*/
+.head{
+	padding: 0 20px; 
+	height: 62px;
+	overflow: hidden;
+}
+h1{
+	margin: 0;
+	height: 32px;
+	margin-top:15px; 
+	float: left;
+}
+h1 a{
+    display: block;
+    width: 142px;
+    height: 0px;
+    padding-top:32px;
+    overflow: hidden;
+    background: url(../img/logo.png) no-repeat;
+}
+.head div{
+	float: right;
+	margin-top:15px; 
+	padding:0 10px; 
+}
+.head div .hp{
+	margin-right:10px; 
+}
+.head div span img{
+	width: 32px;
+	height: 32px;
+	display: block;
+}
+.username{
+	color:#fff;
+	line-height:32px;
+	height:32px;
+	font:16px/32px Arial,"微软雅黑";
+	margin-right: 10px;
+}
+.sjb{
+	height: 32px;
+	width: 10px;
+	background: url(../img/sjb.png) no-repeat center;
+}
+/*-------------头部结束---------------*/
+/*-------------body结束---------------*/
+.bodybox{
+	height:calc(100% - 63px);
+
+	/*height:575px;*/
+	/*background: orange;*/
+}
+/*-----------树--------------*/
+.bodyleft{
+	width: 200px;
+	color:#fff;
+	padding-top:15px;
+	height: calc(100% - 15px);
+	overflow: auto;
+}
+.bodyleft ul{
+	padding-left: 10px;
+}
+.bodyleft ul ul.active{
+	display: block;
+}
+.bodyleft li{
+	font:16px/20px "微软雅黑";
+	margin: 8px 0;
+	white-space:nowrap; 
+}
+.bodyleft span{
+	padding: 0 8px;
+	height:20px;
+	border:1px solid transparent;
+}
+.bodyleft span:hover{
+  /*border: 2px solid rgba(130, 189, 227, 0.8);*/
+  /*box-shadow: -1px -1px 0 #91c5e6;*/
+  box-sizing:border-box;
+  height: 18px;
+  border:1px solid rgba(130, 189, 227, 0.8);
+  background-color: rgba(130, 189, 227, 0.4);
+}
+.bodyleft span.active{
+  /*border: 2px solid rgba(130, 189, 227, 0.8);*/
+  /*box-shadow: -1px -1px 0 #91c5e6;*/
+  box-sizing:border-box;
+  height: 18px;
+  border:1px solid rgba(130, 189, 227, 0.8);
+  background-color: rgba(130, 189, 227, 0.4);
+}
+.bodyleft i{
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+.sjx{
+	background: url(../img/sjx.png)  no-repeat center;
+}
+/*-----------树结束--------------*/
+/*-----------bodyright-------------*/
+/*-------------righthead------*/
+.bodyright{
+	width: calc(100% - 250px);
+	height: 100%;
+	border: 1px solid rgba(255,255,255,0.2);
+	box-sizing:border-box; 
+	border-radius:6px; 
+	position: relative;
+	overflow: hidden;
+	/*background: #fff;*/
+}
+.bodyright header{
+	position: relative;
+	padding: 16px 15px;
+	height: 32px;
+}
+.bodyright header a{
+	padding: 0 12px 0 40px;
+    height: 30px;
+    line-height: 32px;
+    border: 1px solid #c0d9fe;
+    text-align: center;
+    color: #3e8eff;
+    position: relative;
+}
+.bodyright header a:hover{
+	opacity: .7;
+}
+.newbuild{
+	margin-right: 10px;
+	border-radius: 5px;
+}
+.fun{
+	border-radius: 5px;
+}
+.bodyright header a:after{
+	content:"";
+	position: absolute;
+	top:6px;
+	left:12px;
+	width: 16px;
+	height:16px;
+}
+.newbuild:after{
+	content:"";
+	background: url(../img/jinglingtu.png)  no-repeat -161px -12px;
+}
+.del:after{
+	content:"";
+	background: url(../img/jinglingtu.png)  no-repeat -187px -12px;
+}
+.bodyright header .again:after{
+	content:"";
+	width: 18px;
+	background: url(../img/jinglingtu.png)  no-repeat -239px -12px;
+}
+.copy:after{
+	content:"";
+	background: url(../img/jinglingtu.png)  no-repeat -213px -12px;
+}
+.move:after{
+	content:"";
+	background: url(../img/jinglingtu.png)  no-repeat -135px -12px;
+}
+.fun a{
+	margin-right:-1px; 
+}
+.fun a:first-child {
+    border-radius: 5px 0 0 5px;
+}
+.fun a:last-child {
+    border-radius:0 5px 5px 0;
+}
+.movebox{
+	position: absolute;
+	z-index: 2;
+	left:400px;
+	top:0;
+	overflow: auto;
+	padding: 30px 20px;
+	background: rgba(0,0,0,0.5);
+	border-radius: 10px;
+	display: none;
+	width: 300px;
+	height:400px;
+	overflow: hidden;
+}
+.moveulWrap{
+	background: rgba(0,0,0,0.3);
+}
+.movebox ul.moveul{
+	
+	overflow: auto;
+	height:375px;
+}
+.movebox ul{
+	
+	border-radius: 10px;
+	padding-left: 10px;
+}
+
+.movebox ul ul.active{
+	display: block;
+}
+.movebox li{
+	font:16px/20px "微软雅黑";
+	white-space:nowrap; 
+}
+.movebox span{
+	padding: 0 8px;
+	height:20px;
+	border:1px solid transparent;
+}
+.movebox span.active{
+  /*border: 2px solid rgba(130, 189, 227, 0.8);*/
+  /*box-shadow: -1px -1px 0 #91c5e6;*/
+  box-sizing:border-box;
+  height: 18px;
+  border:1px solid rgba(130, 189, 227, 0.8);
+  background-color: rgba(130, 189, 227, 0.4);
+}
+.movebox span:hover{
+  /*border: 2px solid rgba(130, 189, 227, 0.8);*/
+  /*box-shadow: -1px -1px 0 #91c5e6;*/
+  box-sizing:border-box;
+  height: 18px;
+  border:1px solid rgba(130, 189, 227, 0.8);
+  background-color: rgba(130, 189, 227, 0.4);
+}
+.movebox i{
+	height: 20px;
+	width: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+.btns{
+	position: absolute;
+	bottom:13px;
+	left:calc(50% - 50px);
+	width: 100px;
+}
+
+.search{
+	height: 32px;
+    background-color: rgba(130, 189, 227, 0.4);
+    padding: 0 20px;
+    width: 180px;
+    font: 14px 'Microsoft Yahei';
+    border-radius: 16px;
+    position: relative;
+}
+.bodyright header form{
+	position: relative;
+}
+.bodyright header form:after{
+	content:"";
+	position: absolute;
+	width: 24px;
+	height:24px;
+	right:12px;
+	top:3px;
+	/*background: red;*/
+	background: url(../img/jinglingtu.png)  no-repeat -279px -10px;
+}
+.view_opt {
+    margin: 0 10px;
+    cursor: pointer;
+}
+.order{
+	position: relative;
+}
+.order ul.active{
+	display: block;
+}
+.order div {
+    /*content: '';*/
+    /*display: inline-block;*/
+    width: 32px;
+    height: 32px;
+    background: url(../img/jinglingtu.png)  no-repeat -73px -6px;
+}
+.order:hover:before{
+	background: url(../img/jinglingtu.png)  no-repeat -71px -45px;
+}
+.orderbox{
+	position: absolute;
+    top: 38px;
+    right: 0;
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 100px;
+    background: rgba(0,0,0,0.5);
+    line-height: 28px;
+    text-indent: 32px;
+    color: #4b95ff;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 9;
+    display: none;
+}
+.orderbox li{
+	position: relative;
+}
+.orderbox li:after{
+	content:"";
+	position: absolute;
+	width: 16px;
+	height:16px;
+	left:8px;
+	top:8px;
+}
+.sortName:after{
+	background: url(../img/jinglingtu.png)  no-repeat -228px -31px;
+}
+.sortSize:after{
+	background: url(../img/jinglingtu.png)  no-repeat -123px -32px;
+}
+.sortData:after{
+	background: url(../img/jinglingtu.png)  no-repeat -173px -31px;
+}
+.orderbox li:hover {
+	background-color: rgba(255,255,255,0.2);
+}
+.list{
+	width: 32px;
+    height: 32px;
+    background: url(../img/jinglingtu.png) no-repeat -9px -5px;
+}
+.list:hover{
+	background: url(../img/jinglingtu.png) no-repeat -9px -45px;
+}
+/*-------------righthead------*/
+.main{
+	height:calc(100% - 64px);
+}
+
+/*-------------right上一级------*/
+.breadName{
+	height:15px;
+}
+.breadName a{
+	color:#3e8eff;
+}
+.backAllwj{
+	font-size: 12px;
+    line-height: 16px;
+    font:12px/16px Arial,"微软雅黑";
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+.backAllwj .back{
+	display: none;
+	color:#3e8eff;
+}
+.backAllwj .active{
+	display: block;
+}
+.back:after {
+    content: '';
+    display: inline-block;
+    vertical-align: bottom;
+    width: 2px;
+    height: 14px;
+    background-color: #ddd;
+    margin: 0 3px;
+}
+.backAllwj i{
+	font-family: '仿宋';
+    margin: 0 3px;
+    color:rgba(255,255,255,0.8);
+}
+/*-------------right上一级------*/
+/*-------------allcheck------*/
+.allcheck{
+	height:36px;
+	font:16px/36px "微软雅黑";
+	position: relative;
+	display: flex;
+	justify-content:space-between;
+}
+.allcheck span{
+	padding-left:36px; 
+	line-height: 36px; 
+	position: relative;
+}
+.allcheck span i{
+	position: absolute;
+	top:11px;
+	left:11px;
+	display: block;
+	height:14px;
+	width:14px;
+	background: url(../img/check.png) no-repeat left top;
+}
+.allcheck span.active i{
+	background: url(../img/check.png) no-repeat right top;
+}
+/*.allcheck div{
+	position: absolute;
+	top:0;
+	right: 20px;
+	display: none;
+}
+.allcheck div.active{
+	display: block;
+	left:20px;
+}*/
+
+/*-------------allcheckover------*/
+
+/*-----------folder-------------*/
+
+.folder{
+	height: calc(100% - 61px);
+	width: 100%;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	overflow: auto;
+	font-size: 12px;
+	position: relative;
+}	
+.main div:nth-of-type(3).active{
+	background: url(../img/kong.png) no-repeat center;
+	
+}
+
+.folders{
+	padding-left: 3px;
+}
+.folder ul li {
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 127px;
+    text-align: center;
+    border: 1px solid transparent;
+    margin: 3px;
+    border-radius: 8px;
+}
+.folders li:hover{
+	background-color: rgba(130, 189, 227, 0.4);
+}
+.folders li.active{
+	background-color: rgba(130, 189, 227, 0.4);;
+}
+.folders li i {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 18px;
+    height: 18px;
+
+    /*border-radius: 9px;*/	
+    background: url(../img/check.png) no-repeat left bottom;
+    text-align: center;
+    line-height: 20px;
+    color: #000;
+    cursor: pointer;
+    border: none;
+    /*opacity: .3;*/
+    display: none;
+}
+.folders li:hover i{
+	display: block;
+}
+.folders li.active i{
+	display: block;
+	background: url(../img/check.png) no-repeat right bottom;
+}
+.checkbox {
+	display: inline-block;
+	vertical-align: top;
+	width: 12px;
+	height: 12px;
+	/*border: 1px solid #d6dce4;*/
+	text-align: center;
+	line-height: 12px;
+	border-radius: 2px;
+}
+.folders li .folderimg {
+    display: block;
+    margin: 20px auto;
+    width: 56px;
+    height: 56px;
+    background: url(../img/files.png) no-repeat;
+    background-size:cover; 
+}
+.folders li .more{
+	display: none;
+}
+.folder form.active{
+	display: block
+}
+.change-foldername{
+	display: none;
+	position: absolute;
+	height:20px;
+	bottom:12px;
+	left:0;
+	width:120px;
+}
+.change-foldername .change{
+	width: 100%;
+	height:20px;
+	/*background-color: rgba(0,0,0,.8);*/
+	border-radius: 5px;
+	margin: 0 auto; 
+	text-align: center;
+	/*color:#fff;*/
+}
+.change-foldername .changenamesure,.change-foldername .changenameno{
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+	height: 20px;
+	background: #00bbff;
+	float:left;
+	margin-left:4px; 
+}
+.folder ul.listfile li{
+	position: relative;
+	height: 44px;
+	border-bottom: 1px solid #f7f6fb;
+	line-height: 44px;
+	padding-left: 10px;
+	float:none;
+	margin: 0;
+	width:calc(100% - 15px);
+}
+ul.listfile li:hover{
+	background-color: rgba(130, 189, 227, 0.4);;
+}
+ul.listfile li.active{
+	background-color: rgba(130, 189, 227, 0.4);;
+}
+ul.listfile li span,ul.list li a{
+	float: left;
+}
+ul.listfile li:hover i{
+	display: block;
+	background: url(../img/check.png) no-repeat left bottom;
+}
+ul.listfile li .folderimg{
+	width: 26px;
+	height: 26px;
+	margin: 8px;
+	float:left;
+	background: url(../img/files.png) no-repeat;
+	background-size: cover;
+}
+ul.listfile li i{
+	float: left;
+	width: 18px;
+	height:18px;
+	margin:12px; 
+	
+}
+ul.listfile li.active i{
+	display: block;
+	background: url(../img/check.png) no-repeat right bottom;
+}
+ul.listfile .foldbox,ul.list .more{
+	float: left;
+}
+ul.listfile .foldbox{
+	width: 60%;
+}
+
+ul.listfile li .more{
+	display: block;
+	width: 40%;
+	float:right;
+}
+ul.listfile li time{
+	float: right;
+	width: 50%;
+}
+ul.listfile .foldername{
+	margin-left:30px;
+	float: left;
+	font:14px/44px "微软雅黑";
+}
+ul.listfile .change-foldername{
+	left:100px;
+	bottom:23px;
+}
+.alert{
+	width: 300px;
+	height:200px;
+	position: fixed;
+	top:-200px;
+	background-color: rgba(0,0,0,.5);
+	text-align: center;
+	font:20px/200px "宋体";
+	left:calc(50% - 150px);
+	z-index: 999;
+}
+.alert div.active{
+	display: block;
+}
+.alert div{
+	position: absolute;
+	bottom:10px;
+	left:calc(50% - 62px);
+	height:20px;
+	float: left;
+	display: none;
+}
+.alert div button{
+
+	float:left;
+	margin: 0 10px;
+}
+.rightKey{
+	width: 140px;
+	padding: 0 10px;
+	/*height:0px;*/
+	position: absolute;
+	background: rgba(255,255,255,.8);
+	display: none;
+	/*top:0;
+	left:0;*/
+}
+.rightKey div.active a{
+	color:yellow;
+}
+.rightKey a{
+	display: block;
+	text-align: center;
+	height:35px;
+	color:#000;
+	font:20px/35px "微软雅黑";
+}
+.rightKeySecond{
+	border-bottom: 1px solid rgba(0,0,0,.3)
+}
+.rightKeyFirst{
+	display: none;
+}
+.rightKey div.noclick a{
+	color:rgba(0,0,0,.4);
+}

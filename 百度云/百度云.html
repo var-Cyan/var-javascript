@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/yun.css">
+</head>
+<body>
+	<header class="head">
+		<h1 class="fl">
+			<a href="javascript:;">百度云盘</a>
+		</h1>
+		<div>
+			<a class="fl" href="javascript:;">
+				<span class="hp fl"><img src="img/h.gif" alt=""></span>
+				<span class="username fl">var-Cyan</span>
+				<i class="sjb fl"></i>
+			</a>
+		</div>
+	</header>
+	<section class="bodybox">
+		<div class="bodyleft fl">
+			<ul class="firstul"></ul>
+		</div>
+		<div class="bodyright fl">
+			<header>
+				<a class="newbuild fl" href="javascript:;">新建文件夹</a>
+				<div class="fun fl">
+					<a class="del fl" href="javascript:;">删除</a>
+					<a class="again fl" href="javascript:;">重命名</a>
+					<a class="copy fl" href="javascript:;">复制</a>
+					<a class="move fl" href="javascript:;">移动到</a>
+				</div>
+				<div class="movebox">
+					<div class="moveulWrap">
+						<ul class="moveul"></ul>
+					</div>
+					
+					<div class="btns">
+						<button class='sure'>确定</button>
+						<button class='cancel'>取消</button>
+					</div>
+				</div>
+				<div class="fr">
+					<form class="fl">
+						<input type="text" class="search" placeholder="输入你想查找的文件">
+					</form>
+					<div class="rightfun fl">
+						<div class="view_opt order fl">
+							<div></div>
+							<ul class="orderbox">
+								<li class='sortName'>文件名</li>
+								<li class='sortSize'>大小</li>
+								<li class='sortData'>修改日期</li>
+							</ul>
+						</div>
+						<div class="view_opt list fl"></div>
+					</div>
+				</div>
+			</header>
+			<div class="main">
+				<div class="backAllwj clearfix">
+					<a class="back fl" href="javascript:;">返回上一级</a>
+					<!-- <a class="fl" href="javascript:;">全部文件</a> -->
+					<div class="breadName fl">
+					</div>
+					<div class="load fr"></div>
+				</div>
+				<div class="allcheck">
+					<span>
+						<i></i>
+						<strong></strong>
+					</span>
+					<!-- <div>已选中三个文件/文件夹</div> -->
+				</div>
+				<div class="folder">
+					<div class="alert">
+						名字有重复的是否要覆盖
+						<div class='button active'>
+							<button class="yes">覆盖</button>
+							<button class="no">取消</button>
+						</div>
+					</div>
+					<!-- <ul class="listfile clearfix"> -->
+					<!-- 不能删 -->
+					<ul class="folders clearfix">
+
+					</ul>
+				</div>
+			</div>
+			<div class='rightKey noclick'>
+				<div class='rightKeyFirst'>
+					<a class='rightOpen' href="javascript:;">打开</a>
+				</div>
+				<div class='rightKeySecond'>
+					<a class='rightNew' href="javascript:;">新建</a>
+					<a class='rightAdd' href="javascript:;">重新加载页面</a>
+				</div>
+				<div class='rightKeyThird noclick'>
+					<a class='rightDel' href="javascript:;">删除</a>
+					<a class='rightAgain' href="javascript:;">重命名</a>
+					<a class='rightCopy' href="javascript:;">复制</a>
+					<a class='rightMove' href="javascript:;">移动到</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="js/fq_tools.js"></script>
+	<script src="js/data.js"></script>
+	
+	<script src="js/tools.js"></script>
+	<script src="js/createTree.js"></script>
+	
+	<script src="js/view.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/fileclick.js"></script>
+
+</body>
+</html>
