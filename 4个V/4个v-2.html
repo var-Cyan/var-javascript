@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+	}
+	button{
+		list-style: none;
+		border: none;
+		margin-top: 0;
+		padding: 0;
+	}
+	#bg{
+		width: 1000px;
+		height: 600px;
+		background:url(img/wrap.png) no-repeat; 
+		background-size:100%; 
+		display: flex;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+	#box{
+		width: 290px;
+		height: 490px;
+		margin: auto;
+		background: -webkit-radial-gradient(top, red 0%, orange 30%, yellow 70%, green 100%);
+		/*background:url(img/bg1.png) no-repeat; */
+		text-align: center;
+		background-size: 100% 100%;
+	}
+	#con{
+		width: 250px;
+		height: 250px;
+		margin: 85px auto;
+		position: relative;
+	}
+	#btn{
+		width: 100px;
+		height: 50px;
+		background: -webkit-radial-gradient(top, #adb286 0%, #6d7c94 30%, #4075a6 70%, #1d1c32 100%);
+		font: 16px/50px "宋体";
+		color: #fff;
+		border-radius: 50px;
+
+	}
+	.son{
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		line-height: 50px; 
+		border-radius:50px; 
+		color: white;
+		font-weight: bold;
+		font-size: 20px;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var btn=document.getElementById('btn');
+			var con=document.getElementById('con');
+			var click=0;
+			var num=5;
+			var posi=['left','bottom','right','top'];
+			btn.onclick=function (){
+				click++;
+				var	str='';
+				// btn.innerHTML='各种V';
+				for( var i=0;i<num;i++){
+					t=i<parseInt(num/2)?50*i:50*(num-1-i);
+					str +='<div class="son" style="'+[posi[(click-1)%(posi.length)]]+':'+(50*i)+'px;'+[posi[click%(posi.length)]]+':'+t+'px">'+(i+1)+'</div>';
+					con.innerHTML=str;
+				};
+				var son=document.querySelectorAll('.son');
+				for(var i=0;i<num;i++){
+					if(i%2==0){
+						son[i].style.background='linear-gradient(red,orange,yellow,green,indigo,blue,purple,pink,violet,black,white)';
+					}else{
+						son[i].style.background='radial-gradient(red,orange,yellow,green,indigo,blue,purple,pink,violet,black,white)';
+					};
+				}
+			};
+		};
+	// };
+	</script>
+
+</head>
+<body>
+	<div id="bg">
+		<div id="box">
+			<div id="con"></div>
+			<button id="btn">生成</button>
+		</div>	
+	</div>
+</body>
+</html>
