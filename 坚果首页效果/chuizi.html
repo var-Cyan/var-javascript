@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+			body{
+				overflow:hidden; 
+			}
+			body,ul,li,img{
+				padding:0;
+				margin:0;
+
+			}
+			li{
+				list-style: none;
+			}
+			img{
+				border: none;
+			}
+			#div1 {
+				width: 100%;
+				position: absolute;
+				left: 0;
+				bottom: -20px;
+				height: 100%;
+				/*overflow:hidden;*/
+			}
+			#oUl {
+				width:100%;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				transition: transform .4s cubic-bezier(.445,.05,.55,.95);/*贝赛尔曲线*/
+				overflow:hidden;
+			}
+			#oUl li {
+				float: left;
+				width: 13.8%; 
+				position: relative;
+				transition: transform .4s cubic-bezier(.445,.05,.55,.95);
+				will-change: transform;/*提高页面滚动、动画等渲染性能,使动画效果更加流畅*/
+			}
+			#oUl li img{
+				width: 100%;
+				max-width: 100%;
+				height: auto;
+				position: relative;
+				will-change: transform;
+				-webkit-transition: transform .3s cubic-bezier(0,.68,.86,.98);
+				transition: transform .3s cubic-bezier(0,.68,.86,.98);
+				cursor: pointer;
+				background-size:contain;/*平铺*/
+				background-repeat:  no-repeat;
+			}
+			/*初始值*/
+			#oUl li:nth-child(1) img{
+				-webkit-transform: translate3d( 0px,63%,0px);
+			}
+			#oUl li:nth-child(2) img{
+				-webkit-transform: translate3d( 0px,47%,0px);
+			}
+			#oUl li:nth-child(3) img{
+				-webkit-transform: translate3d( 0px,67%,0px);
+			}
+			#oUl li:nth-child(4) img{
+				-webkit-transform: translate3d( 0px,47%,0px);
+			}
+			#oUl li:nth-child(5) img{
+				-webkit-transform: translate3d( 0px,27%,0px);
+			}
+			#oUl li:nth-child(6) img{
+				-webkit-transform: translate3d( 0px,47%,0px);
+			}
+			#oUl li:nth-child(7) img{
+				-webkit-transform: translate3d( 0px,61%,0px);
+			}
+			/*初始值*/
+			#oUl li.prev{
+				transform: translate3d(-13%,0,0);
+			}
+			#oUl li.next{
+				transform: translate3d(13%,0,0);
+			}
+			#abc li:nth-child(n) img{
+				transform:translate3d(0,25%,0);;
+			}
+			#abc ul li.lager img{
+				transform:translate3d(0,15%,0);;
+			}
+	</style>
+	<script>
+	// 获得屏幕宽度
+	function view(){
+		return {
+			w:document.documentElement.clientWidth
+		}
+	}
+	//获取某一个元素到屏幕左边的距离
+	function offsetL(obj){
+		var left=0;
+		while(obj){
+			left+=obj.offsetLeft;
+			obj=obj.offsetParent;
+		}
+		return left;
+	}
+	//获取相对浏览器的位置的绝对值
+	function getBounding(obj,pos){
+		return obj.getBoundingClientRect()[pos];
+	}
+	
+	// console.log()
+		window.onload=function(){
+			var aImg=document.getElementsByTagName('img')
+			var aLi=document.getElementsByTagName('li')
+			var oUl=document.getElementsByTagName('ul')[0];
+			var div=document.getElementsByTagName('div')[0];
+			console.log(div)
+			for(var i=0;i<aLi.length;i++){
+				aImg[i].index=i;
+				// aLi[i].style.width=view().w/7/view().w*100+'%';
+				// 宽度平均分成七分
+				aLi[i].style.width=1/7*100+'%';
+			}
+
+			//获得图片的宽度 *5= 五张图片的宽度 受影响的最大范围
+			var maxL=oUl.offsetWidth/7*5;
+
+			var timer=null,clientX=0;
+			function moveFn(ev){
+				var middle,distance,scale
+				clientX=ev.pageX
+				// H5提供的一个函数(相当于定时器)做动画requestAnimationFrame(fn)第二个参数不用写,根据浏览器的绘画走的，所以做出的动画更加流畅
+				//开定时器之前要先清除定时器
+				cancelAnimationFrame(timer)
+				timer=requestAnimationFrame(function(){
+					for(var i=0;i<aImg.length;i++){
+						// 中心点到X轴的距离
+						var middle=offsetL(aImg[i])+aImg[i].offsetWidth/2;
+						// 鼠标到每张图片中心点X轴的一个差值
+						var distance=Math.abs(clientX-middle);
+						//不能超出最大受影响范围
+						if(distance>maxL)distance=maxL
+
+						//得到一个比例
+						var scale=Math.abs(distance/maxL)*60;
+
+						aImg[i].style.transform='translate3d(0,'+scale+'%,0)';
+
+					}
+				})
+
+			}
+
+
+			oUl.onmousemove=moveFn;
+			function outFn(){
+				cancelAnimationFrame(timer)
+				for(var i=0;i<aImg.length;i++){
+					aImg[i].removeAttribute('style');
+				}
+			}
+			oUl.onmouseout=outFn;
+			var onOff=true
+			oUl.onclick=function(ev){
+				var e = ev || event;
+				if(onOff){
+					var target=ev.target
+					if(target.nodeName.toUpperCase()==='IMG'){
+						div.id='abc';
+						var targetMiddle=offsetL(target)+target.offsetWidth/2;
+						var value=view().w/2-targetMiddle;
+						oUl.style.transform ='translate3d('+value*3+'px,0,0) scale(3)'
+						for(var i=0;i<aImg.length;i++){
+							aImg[i].style.cssText='transition:transform 10s cubic-bezier(.445,.05,.55,.95)';
+							if(i<target.index){
+								aImg[i].parentNode.className='prev'
+							}else if(i>target.index){
+								aImg[i].parentNode.className='next'
+							}
+						}
+						target.parentNode.className='lager';
+						oUl.onmousemove=oUl.onmouseout=null
+					}
+					onOff=false;
+				}else{
+					oUl.removeAttribute('style');
+					for(var i=0;i<aLi.length;i++){
+						aLi[i].className=''
+					}
+					div.id=''
+					setTimeout(function(){
+						oUl.onmousemove=moveFn
+						oUl.onmouseout=outFn;
+						onOff=true;
+					},300)
+				}
+
+
+			}
+			
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul id="oUl">
+			<li>
+				<img src="./img/1-1.png">
+			</li>
+			<li>
+				<img src="./img/2-2.png">
+			</li>
+			<li>
+				<img src="./img/3-3.png">
+			</li>
+			<li>
+				<img src="./img/4-4.png">
+			</li>
+			<li>
+				<img src="./img/5-5.png">
+			</li>
+			<li>
+				<img src="./img/6-6.png">
+			</li>
+			<li>
+				<img src="./img/7-7.png">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
