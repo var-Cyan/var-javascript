@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#choseCard1{
+		position: relative;
+	}
+	#choseCard2{
+		position: relative;
+		top:50px;
+	}
+	p{
+		margin: 0;
+		position: absolute;
+		width: 100%;
+		display: none;
+	}
+	p:nth-of-type(1){
+		background: red;
+	}
+	p:nth-of-type(2){
+		background: orange;
+	}
+	p:nth-of-type(3){
+		background: yellow;
+	}
+	p:nth-of-type(4){
+		background: green;
+	}
+	p:nth-of-type(5){
+		background: #00bbff;
+	}
+	</style>
+</head>
+<body>
+	<div id="choseCard1">
+		<button>选项一</button>
+		<button>选项二</button>
+		<button>选项三</button>
+		<button>选项四</button>
+		<button>选项五</button>
+		<p style="display:block">选项一</p>
+		<p>选项二</p>
+		<p>选项三</p>
+		<p>选项四</p>
+		<p>选项五</p>
+	</div>
+	<div id="choseCard2">
+		<button>选项一</button>
+		<button>选项二</button>
+		<button>选项三</button>
+		<button>选项四</button>
+		<button>选项五</button>
+		<p style="display:block">选项一</p>
+		<p>选项二</p>
+		<p>选项三</p>
+		<p>选项四</p>
+		<p>选项五</p>
+	</div>
+	<input type="button" value="开始播放第二个" id="btn1" />
+	<input type="button" value="停止播放第一个" id="btn2" />
+	<input type="button" value="开始播放所有" id="btn3" />
+	<input type="button" value="停止播放所有" id="btn4" />
+	<input type="button" value="反向播放" id="btn5" /><!-- -->
+	<script>
+
+	function CreateFun(father){
+		this.btns = father.querySelectorAll('button')
+		this.ps = father.querySelectorAll('p')
+		this.lens=this.btns.length
+		this.timer=null
+		this.n=0;
+	}
+	CreateFun.prototype.init=function(){
+		var _this=this
+		for(var i=0;i<this.lens;i++){
+			this.btns[i].index=i
+			this.btns[i].onclick=function(){
+				_this.n=this.index
+				_this.play(this.index)
+			}
+		}
+	}
+	CreateFun.prototype.play=function(index){
+
+		for(var i=0;i<this.lens;i++){
+			this.btns[i].style.background='';
+			this.ps[i].style.display='none'
+		}
+		this.btns[index].style.background='blue';
+		this.ps[index].style.display='block'
+	}
+
+	CreateFun.prototype.autoPlay=function(index){
+		var that=this;
+		this.timer=setInterval(function(){
+			that.n++;
+			if(that.n==that.lens){
+				that.n=0;
+			}
+			that.play(that.n)
+		},1000)
+	}
+	CreateFun.prototype.stopPlay=function(index){
+		clearInterval(this.timer)
+		this.timer=null;
+	}
+
+	CreateFun.prototype.status=function(index){
+		return !!this.timer;
+	}
+
+
+
+		var chose1 = document.getElementById('choseCard1')
+			
+		var choseCard1 = new CreateFun(chose1);
+
+			choseCard1.init();
+			choseCard1.autoPlay();
+
+		var chose2 = document.getElementById('choseCard2')
+
+		var choseCard2 = new CreateFun(chose2);
+
+			choseCard2.init();
+
+			//开始播放第二个
+		btn1.onclick=function(){
+			console.log(2)
+			if(!choseCard2.status()){
+				choseCard2.autoPlay();
+			}
+		}	
+			//停止播放第一个
+		btn2.onclick=function(){
+			if(choseCard1.status()){
+				choseCard1.stopPlay();
+			}
+		}
+		//开始播放所有
+		btn3.onclick=function(){
+			if(!choseCard1.status()){
+				choseCard1.autoPlay();
+			}
+			if(!choseCard2.status()){
+				choseCard2.autoPlay();
+			}
+		}
+		//停止播放所有
+		btn4.onclick=function(){
+			if(choseCard1.status()){
+				choseCard1.stopPlay();
+			}
+			if(choseCard2.status()){
+				choseCard2.stopPlay();
+			}
+		}
+		//反向播放
+		btn5.onclick=function(){
+			if(choseCard1.status()){
+				choseCard1.stopPlay();
+			}else{
+				choseCard1.autoPlay();
+			}
+			if(choseCard2.status()){
+				choseCard2.stopPlay();
+			}else{
+				choseCard2.autoPlay();
+			}
+		}
+	</script>
+</body>
+</html>
