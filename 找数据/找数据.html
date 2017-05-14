@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		display: flex;
+	}
+	p{
+		margin:0; 
+		height: 30px;
+		line-height: 30px;
+	}
+	span{
+		float: left;
+		color: #fff;
+	}
+	section{
+		margin: auto;
+		width: 1200px;
+		height: 635px;
+		background:url(bg.png) no-repeat center center; 
+		overflow: hidden;
+		background-size:cover; 
+		position: relative;
+	}
+	div{
+		position: absolute;
+		width: 480px;
+		height: 120px;
+		top: 53%;
+		left: 50%;
+		transform:translateX(-50%);
+	}
+	button{
+		position:absolute;
+		right:20%;
+		top:50%;
+	}
+	.yellow{
+		color: yellow;
+	}
+	.blue{
+		color: blue;
+	}
+	.pink{
+		color: pink;
+	}
+	.orange{
+		color: orange;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var arr=['100px','abd'-6,[],-98765,34,-2,0,'300', ,function(){alert(1)},null,document,[],true,'200px'-30,'23.45元',5,Number('abc'),function(){alert(3);},'xyz'-90];
+			var btn=document.querySelector('button');
+			var yellow=document.querySelector('.yellow1');
+			var blue=document.querySelector('.blue1');
+			var pink=document.querySelector('.pink1');
+			var orange=document.querySelector('.orange1');
+			var n=-Infinity;
+			var onOff=true;
+			
+					btn.onclick=function(){
+						if(onOff==true){
+							for(var i=0;i<arr.length;i++){
+								//判断是不是数字类型 并且 自身等于自身去除了NAN
+							if(typeof(arr[i])=='number' && arr[i]==arr[i]){
+								yellow.innerHTML+=arr[i]+',';
+							}
+//1、 Number.parseInt(Float也可以)(arr[i])==Number.parseInt(arr[i])判断(是否能转化数字 100px，-98765 34 -2 0 300 23.45元 5
+//2、Number(arr[i])==Number(arr[i]) 是否能转化数字 [],-98765,34,-2,0,300,null,[],true,5, 
+//3   Number.parseInt(arr[i])==Number.parseInt(arr[i]) || Number(arr[i])==Number(arr[i])
+//3、   	100px,,-98765,34,-2,0,300,null,,true,23.45元,5,
+//4、typeof(arr[i])!=='number'  把原来是数字的排除
+//5、(Number.parseInt(arr[i])==Number.parseInt(arr[i]) || Number(arr[i])==Number(arr[i])) && typeof(arr[i])!=='number'
+//5、        100px,[],300,null,[],true,23.45元,
+							if((Number.parseInt(arr[i])==Number.parseInt(arr[i]) || Number(arr[i])==Number(arr[i])) && typeof(arr[i])!=='number'){
+								if(typeof (arr[i])=='string'){
+									blue.innerHTML+='\''+arr[i]+'\',';
+								}else{
+									blue.innerHTML+=arr[i]+',';
+								}
+								
+							}
+							//取最大值 用Number.parseFloat(arr[i])更稳妥 防止小数太接近引发的错误
+							if(n<Number(arr[i])){
+								n=arr[i];
+								pink.innerHTML=n+',';
+							}//判断是不是NAN
+							if(arr[i]!=arr[i]){
+								orange.innerHTML+=i+',';
+							}
+						}
+					onOff=false;
+					}	
+				}
+			}
+	</script>
+</head>
+<body>
+	<section>
+		<div>
+			<p><span class="yellow">① 所有的数字是：</span><span class="yellow1"></span></p>
+			<p><span class="blue">② 可以转成数字的是：</span><span class="blue1"></span></p>
+			<p><span class="pink">③ 转成数字的最大值：</span><span class="pink1"></span></p>
+			<p><span class="orange">④ 所有运算结果是NAN的位置:</span><span class="orange1"></span></p>	
+		</div>
+		<button>开始查找</button>
+	</section>
+</body>
+</html>

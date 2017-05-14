@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body,html{
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		background: -webkit-radial-gradient(top, #adb286 0%, #6d7c94 30%, #4075a6 70%, #1d1c32 100%);
+		background: -moz-radial-gradient(top, #adb286 0%, #6d7c94 30%, #4075a6 70%, #1d1c32 100%);
+	}
+	section{
+		height: 86px;
+		width: 350px;
+		margin: auto; 
+	}
+	span{
+		line-height: 46px;
+		height: 46px;
+		font: 18px/46px "微软雅黑";
+		color: #fff;
+	}
+	div{
+		display: flex;
+
+	}
+	input,button{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		border:none; 
+	}
+	.text{
+		height: 44px;
+		width: 180px;
+		border:1px solid #fff;
+		background: #eeeeee;
+		color:#000; 
+		padding-left: 10px;
+		border-radius: 40px;
+	}
+	button{
+		background: #eeeeee;
+		width:70px;
+		height: 40px;
+		font:20px/40px "宋体";
+		border-radius: 40px;
+	}
+	.return{
+		height:16px;
+		line-height: 16px;
+		padding:12px;
+		color: #fff;
+		background:rgba(0,0,0,0.5); 
+		margin-left:20px; 
+		display: none;
+		border-radius: 40px;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var btn=document.querySelector('button');
+			var qq=document.querySelector('input')
+			var result=document.querySelector('.return')
+		// 	<!-- abc 请输入数字 -->
+		// <!-- 01234 不能有0在前面 -->
+		// <!-- 输入的竹子必须在5位以上、10位以下 -->
+		// <!-- QQ通过 -->
+			btn.onclick=function(){
+				var val=qq.value;
+				result.style.display='block';
+				if(val==''){//判断内容是不是为空
+					result.innerHTML='输入内容不能为空、请输入数字';
+				}else if( Number.isNaN(val)==false && Number.isNaN(val*1)){//判断是不是数字和中间是否有空格 二者选其一即可
+					result.innerHTML='只能写数字';
+				}else if( val[0]==='0'){//判断开头是否为0
+					result.innerHTML='第一位不能为0';
+				}else if( val[0]===' ' || val[val.length-1]===' '){//判断前后为空
+					result.innerHTML='第一位或最后一位不能为空';
+				}else if( val.length>9 || val.length<5){//判断字符长度是否为5-9
+					result.innerHTML='输入的数字必须在5位到10位之间';
+				}else if(isNumber(val)){//判断小数
+					result.innerHTML='输入的必须都是数字';
+				}else if(Number.parseInt(val)!=val){//判断小数
+					result.innerHTML='不能有小数';
+				}else{
+					result.innerHTML='该qq通过检测';
+				}
+
+				function isNumber(str){
+					var res=false;
+					for(var i=0,len=str.length;i<len;i++){
+						if(Number.isNaN(str[i]*1)){
+							res=true;
+							break
+						}
+					}
+					return res;
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+	<section>
+		<div>
+			<span>请输入QQ号码：</span>
+			<input class="text" type="text">
+		</div>
+		<div>
+			<button>检测</button>
+			<div class="return"></div>
+		</div>
+	</section>
+</body>
+</html>
